@@ -7,22 +7,26 @@ angular
     ctrl.dataPointsY = [];
     ctrl.labels = [];
 
-    ctrl.addData = function () {
-      xHolder = ctrl.dataX.split(",");
-      yHolder = ctrl.dataY.split(",");
-      for (var i = 0; i < xHolder.length; i++) {
-        ctrl.dataPointsX.push(parseInt(xHolder[i]));
-      }
-      for (var i = 0; i < yHolder.length; i++) {
-        ctrl.dataPointsY.push(parseInt(yHolder[i]));
-      }
+    ctrl.addData = function () { 
+      ctrl.dataPointsX.push(ctrl.parseData(ctrl.dataX));
+      ctrl.dataPointsY.push(ctrl.parseData(ctrl.dataY));
       ctrl.count += 1;
       ctrl.labels.push(["Set " + ctrl.count.toString()]);
-        ctrl.dataX = '';
-        ctrl.dataY = '';
+      ctrl.dataX = '';
+      ctrl.dataY = '';
     }
+
+    ctrl.parseData = function (data) {
+      holder = data.split(",");
+      array = [];
+      for (var i = 0; i < holder.length; i++) {
+        array.push(parseInt(holder[i]));
+      }
+      return array;
+    }
+
     $scope.labels = ctrl.dataPointsX;
-    $scope.series = ctrl.labels
+    $scope.series = ctrl.labels;
     $scope.data = ctrl.dataPointsY;
     $scope.onClick = function (points, evt) {
       console.log(points, evt);
