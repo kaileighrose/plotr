@@ -2,19 +2,22 @@ angular
   .module('app', ['chart.js'])
   .controller('PlotrController', function ($scope) {
     var ctrl = this;
-    ctrl.dataPoints = [];
+    ctrl.count = 0;
+    ctrl.dataPointsX = [];
+    ctrl.dataPointsY = [];
+    ctrl.labels = [];
 
     ctrl.addData = function () {
-      ctrl.dataPoints.push([ctrl.dataX, ctrl.dataY]);
+      ctrl.dataPointsX.push(ctrl.dataX);
+      ctrl.dataPointsY.push(ctrl.dataY);
+      ctrl.count += 1;
+      ctrl.labels.push(ctrl.count);
         ctrl.dataX = '';
         ctrl.dataY = '';
     }
-     $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-    $scope.series = ['Series A', 'Series B'];
-    $scope.data = [
-      [65, 59, 80, 81, 56, 55, 40],
-      [28, 48, 40, 19, 86, 27, 90]
-    ];
+     $scope.labels = ctrl.dataPointsX;
+    $scope.series = ['Series A'];
+    $scope.data = ctrl.dataPointsY;
     $scope.onClick = function (points, evt) {
       console.log(points, evt);
     };
@@ -27,12 +30,6 @@ angular
             type: 'linear',
             display: true,
             position: 'left'
-          },
-          {
-            id: 'y-axis-2',
-            type: 'linear',
-            display: true,
-            position: 'right'
           }
         ]
       }

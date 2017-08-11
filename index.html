@@ -16,9 +16,8 @@
       <input type="number" placeholder="Y" ng-model="plotr.dataY">
       <button type="submit">Plot It</button>
     </form>
-    <h1>{{plotr.dataPoints}}</h1>
-    <h2>{{plotr.dataX}}</h2>
-
+    <h3>X: {{plotr.dataPointsX}}</h3>
+    <h3>Y: {{plotr.dataPointsY}}</h3>
     <canvas id="line" class="chart chart-line" chart-data="data"
       chart-labels="labels" chart-series="series" chart-options="options"
       chart-dataset-override="datasetOverride" chart-click="onClick">
