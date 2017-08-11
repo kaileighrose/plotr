@@ -12,8 +12,8 @@
   <h1>Plotr</h1>
   <h2>Add points:</h2>
     <form name="form" ng-submit="plotr.addData()">
-      <input type="number" placeholder="X" ng-model="plotr.dataX">
-      <input type="number" placeholder="Y" ng-model="plotr.dataY">
+      <input type="text" placeholder="X" ng-model="plotr.dataX">
+      <input type="text" placeholder="Y" ng-model="plotr.dataY">
       <button type="submit">Plot It</button>
     </form>
     <h3>X: {{plotr.dataPointsX}}</h3>

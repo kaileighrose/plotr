@@ -8,15 +8,21 @@ angular
     ctrl.labels = [];
 
     ctrl.addData = function () {
-      ctrl.dataPointsX.push(ctrl.dataX);
-      ctrl.dataPointsY.push(ctrl.dataY);
+      xHolder = ctrl.dataX.split(",");
+      yHolder = ctrl.dataY.split(",");
+      for (var i = 0; i < xHolder.length; i++) {
+        ctrl.dataPointsX.push(parseInt(xHolder[i]));
+      }
+      for (var i = 0; i < yHolder.length; i++) {
+        ctrl.dataPointsY.push(parseInt(yHolder[i]));
+      }
       ctrl.count += 1;
-      ctrl.labels.push(ctrl.count);
+      ctrl.labels.push(["Set " + ctrl.count.toString()]);
         ctrl.dataX = '';
         ctrl.dataY = '';
     }
-     $scope.labels = ctrl.dataPointsX;
-    $scope.series = ['Series A'];
+    $scope.labels = ctrl.dataPointsX;
+    $scope.series = ctrl.labels
     $scope.data = ctrl.dataPointsY;
     $scope.onClick = function (points, evt) {
       console.log(points, evt);
@@ -30,6 +36,12 @@ angular
             type: 'linear',
             display: true,
             position: 'left'
+          },
+          {
+            id: 'y-axis-2',
+            type: 'linear',
+            display: true,
+            position: 'right'
           }
         ]
       }
